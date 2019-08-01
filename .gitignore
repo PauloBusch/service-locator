@@ -1,6 +1,10 @@
 .vs/
 *.log
 
+packages/
+
 ServiceLocator/bin/
 ServiceLocator/obj/
 
+UnitTests/bin/
+UnitTests/obj/
