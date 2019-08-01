@@ -8,11 +8,12 @@ namespace UnitTests
 {
     public class Mock : IMock
     {
-        public int Instances { get => _instances; }
+        public int Instances { get; private set; }
 
         private static int _instances;
         public Mock() {
             _instances++;
+            Instances = _instances;
         }
     }
 }
