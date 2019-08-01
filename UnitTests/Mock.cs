@@ -15,5 +15,10 @@ namespace UnitTests
             _instances++;
             Instances = _instances;
         }
+
+        public static void ResetCountInstances()
+        {
+            _instances = 0;
+        }
     }
 }
