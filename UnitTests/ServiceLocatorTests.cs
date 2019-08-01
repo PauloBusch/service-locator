@@ -53,7 +53,7 @@ namespace UnitTests
                 Assert.AreEqual(SINGLETON_INSTANCE, InstanceObjects[i].Instances);
         }
         [TestMethod]
-        [ExpectedException(typeof(NoImplementsException))]
+        [ExpectedException(typeof(ImplementsException))]
         public void NoImplementsException() {
             IServiceLocator sl = new ServiceLocator();
             sl.Get<IMock>();

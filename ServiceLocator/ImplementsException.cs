@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ServiceLocatorFramework
 {
-    public class NoImplementsException : Exception
+    public class ImplementsException : Exception
     {
         public override string Message => "Uma implementação não foi associada ao tipo solicitado";
     }
