@@ -1,0 +1,6 @@
+.vs/
+*.log
+
+ServiceLocator/bin/
+ServiceLocator/obj/
+
