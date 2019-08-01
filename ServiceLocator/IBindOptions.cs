@@ -1,7 +1,7 @@
 ﻿namespace ServiceLocatorFramework
 {
-    public interface IBindOptions
+    public interface IBindOptions<T>
     {
-        IScopeOptions Implements<T>();
+        IScopeOptions Implements<T1>() where T1 : T;
     }
 }

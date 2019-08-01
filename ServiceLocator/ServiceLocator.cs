@@ -4,12 +4,12 @@ namespace ServiceLocatorFramework
 {
     public class ServiceLocator : IServiceLocator
     {
-        public IBindOptions Get<T>()
+        public T Get<T>()
         {
             throw new NotImplementedException();
         }
 
-        public IBindOptions Set<T>()
+        public IBindOptions<T> Set<T>()
         {
             throw new NotImplementedException();
         }

@@ -2,7 +2,7 @@
 {
     public interface IServiceLocator
     {
-        IBindOptions Get<T>();
-        IBindOptions Set<T>();
+        T Get<T>();
+        IBindOptions<T> Set<T>();
     }
 }
