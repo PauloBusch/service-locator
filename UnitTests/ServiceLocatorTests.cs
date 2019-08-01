@@ -52,5 +52,11 @@ namespace UnitTests
             for (int i = 0; i < TRY_INSTANCES; i++)
                 Assert.AreEqual(SINGLETON_INSTANCE, InstanceObjects[i].Instances);
         }
+        [TestMethod]
+        [ExpectedException(typeof(NoImplementsException))]
+        public void NoImplementsException() {
+            IServiceLocator sl = new ServiceLocator();
+            sl.Get<IMock>();
+        }
     }
 }
