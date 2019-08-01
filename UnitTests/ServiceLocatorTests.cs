@@ -19,17 +19,14 @@ namespace UnitTests
         [TestMethod]
         public void NewInstances()
         {
-            /*
             IServiceLocator sl = new ServiceLocator();
             sl.Set<IMock>()
                 .Implements<Mock>()
                 .NewInstancesScope();
-            */
 
             IList<IMock> InstanceObjects = new List<IMock>();
-
             for (int i = 0; i < TRY_INSTANCES; i++)
-                InstanceObjects.Add(new Mock()/*sl.Get<IMock>()*/);
+                InstanceObjects.Add(sl.Get<IMock>());
 
             IList<IMock> distinctInstances = InstanceObjects.Distinct().ToList();
             Assert.AreEqual(TRY_INSTANCES, distinctInstances.Count);
@@ -40,18 +37,14 @@ namespace UnitTests
         [TestMethod]
         public void SingletonInstances()
         {
-            /*
             IServiceLocator sl = new ServiceLocator();
             sl.Set<IMock>()
                 .Implements<Mock>()
                 .NewInstancesScope();
-            */
 
             IList<IMock> InstanceObjects = new List<IMock>();
-
-            var instance = new Mock();
             for (int i = 0; i < TRY_INSTANCES; i++)
-                InstanceObjects.Add(instance/*sl.Get<IMock>()*/);
+                InstanceObjects.Add(sl.Get<IMock>());
 
             IList<IMock> distinctInstances = InstanceObjects.Distinct().ToList();
             Assert.AreEqual(SINGLETON_INSTANCE, distinctInstances.Count);
