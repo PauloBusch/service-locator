@@ -40,7 +40,7 @@ namespace UnitTests
             IServiceLocator sl = new ServiceLocator();
             sl.Set<IMock>()
                 .Implements<Mock>()
-                .NewInstancesScope();
+                .SingletonScope();
 
             IList<IMock> InstanceObjects = new List<IMock>();
             for (int i = 0; i < TRY_INSTANCES; i++)

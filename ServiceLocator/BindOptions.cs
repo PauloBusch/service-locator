@@ -1,12 +1,18 @@
 ﻿using ServiceLocatorFramework;
+using System;
 
 namespace ServiceLocatorFramework
 {
     public class BindOptions<TInterface> : IBindOptions<TInterface>
     {
+        private IBindObject _bind;
+        public BindOptions(IBindObject bind) { 
+            this._bind = bind;
+        }
         public IScopeOptions Implements<TImplements>() where TImplements : TInterface
         {
-            throw new System.NotImplementedException();
+            _bind.Implements = typeof(TImplements);
+            return new ScopeOptions(_bind);
         }
     }
 }
