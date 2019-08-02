@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace UnitTests
 {
-    public class Mock : IMock
+    public class MockInstances : IMockInstances
     {
         public int Instances { get; private set; }
 
         private static int _instances;
-        public Mock() {
+        public MockInstances() {
             _instances++;
             Instances = _instances;
         }

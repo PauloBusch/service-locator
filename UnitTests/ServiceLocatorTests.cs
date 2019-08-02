@@ -13,22 +13,22 @@ namespace UnitTests
 
         [TestInitialize]
         public void Setup() { 
-            Mock.ResetCountInstances();
+            MockInstances.ResetCountInstances();
         }
 
         [TestMethod]
         public void NewInstances()
         {
             IServiceLocator sl = new ServiceLocator();
-            sl.Set<IMock>()
-                .Implements<Mock>()
+            sl.Set<IMockInstances>()
+                .Implements<MockInstances>()
                 .NewInstancesScope();
 
-            IList<IMock> InstanceObjects = new List<IMock>();
+            IList<IMockInstances> InstanceObjects = new List<IMockInstances>();
             for (int i = 0; i < TRY_INSTANCES; i++)
-                InstanceObjects.Add(sl.Get<IMock>());
+                InstanceObjects.Add(sl.Get<IMockInstances>());
 
-            IList<IMock> distinctInstances = InstanceObjects.Distinct().ToList();
+            IList<IMockInstances> distinctInstances = InstanceObjects.Distinct().ToList();
             Assert.AreEqual(TRY_INSTANCES, distinctInstances.Count);
 
             for (int i = 0; i < TRY_INSTANCES; i++)
@@ -38,25 +38,41 @@ namespace UnitTests
         public void SingletonInstances()
         {
             IServiceLocator sl = new ServiceLocator();
-            sl.Set<IMock>()
-                .Implements<Mock>()
+            sl.Set<IMockInstances>()
+                .Implements<MockInstances>()
                 .SingletonScope();
 
-            IList<IMock> InstanceObjects = new List<IMock>();
+            IList<IMockInstances> InstanceObjects = new List<IMockInstances>();
             for (int i = 0; i < TRY_INSTANCES; i++)
-                InstanceObjects.Add(sl.Get<IMock>());
+                InstanceObjects.Add(sl.Get<IMockInstances>());
 
-            IList<IMock> distinctInstances = InstanceObjects.Distinct().ToList();
+            IList<IMockInstances> distinctInstances = InstanceObjects.Distinct().ToList();
             Assert.AreEqual(SINGLETON_INSTANCE, distinctInstances.Count);
 
             for (int i = 0; i < TRY_INSTANCES; i++)
                 Assert.AreEqual(SINGLETON_INSTANCE, InstanceObjects[i].Instances);
         }
         [TestMethod]
+        public void ConstructorResolve() {
+            IServiceLocator sl = new ServiceLocator();
+            sl.Set<IMockInstances>()
+                .Implements<MockInstances>()
+                .SingletonScope();
+
+            sl.Set<IMockResolve>()
+                .Implements<MockResolve>()
+                .SingletonScope();
+
+            var singleton = sl.Get<IMockInstances>();
+            var resolved = sl.Get<IMockResolve>();
+
+            Assert.Equals(singleton, resolved.Mock);
+        }
+        [TestMethod]
         [ExpectedException(typeof(ImplementsException))]
         public void NoImplementsException() {
             IServiceLocator sl = new ServiceLocator();
-            sl.Get<IMock>();
+            sl.Get<IMockInstances>();
         }
     }
 }

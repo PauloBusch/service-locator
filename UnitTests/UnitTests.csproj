@@ -49,8 +49,10 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IMock.cs" />
-    <Compile Include="Mock.cs" />
+    <Compile Include="IMockInstances.cs" />
+    <Compile Include="IMockResolve.cs" />
+    <Compile Include="MockInstances.cs" />
+    <Compile Include="MockResolve.cs" />
     <Compile Include="ServiceLocatorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

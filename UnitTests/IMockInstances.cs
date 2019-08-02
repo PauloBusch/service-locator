@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace UnitTests
 {
-    public interface IMock { 
+    public interface IMockInstances
+    { 
         int Instances { get; }    
     }
 }
