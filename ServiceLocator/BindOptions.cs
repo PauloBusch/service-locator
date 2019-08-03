@@ -8,7 +8,7 @@
         }
         public IScopeOptions Implements<TImplements>() where TImplements : TInterface
         {
-            _bind.Implements = typeof(TImplements);
+            _bind.Implements(typeof(TImplements));
             return new ScopeOptions(_bind);
         }
     }

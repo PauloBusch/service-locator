@@ -74,7 +74,7 @@ namespace UnitTests
         }
         [TestMethod]
         [ExpectedException(typeof(ImplementsException))]
-        public void NoImplementsException() {
+        public void ImplementsException() {
             IServiceLocator sl = new ServiceLocator();
             sl.Get<IMockInstances>();
         }

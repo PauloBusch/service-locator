@@ -8,12 +8,12 @@
         }
         public void NewInstancesScope()
         {
-            _bind.Scope = EInstanceScope.NEW_INSTANCES;
+            _bind.Scope(EInstanceScope.NEW_INSTANCES);
         }
 
         public void SingletonScope()
         {
-            _bind.Scope = EInstanceScope.SINGLETON;
+            _bind.Scope(EInstanceScope.SINGLETON);
         }
     }
 }
