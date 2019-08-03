@@ -66,7 +66,11 @@ namespace UnitTests
             var singleton = sl.Get<IMockInstances>();
             var resolved = sl.Get<IMockResolve>();
 
-            Assert.Equals(singleton, resolved.Mock);
+            Assert.IsInstanceOfType(singleton, typeof(MockInstances));
+            Assert.IsInstanceOfType(resolved.Mock, typeof(MockInstances));
+
+            Assert.AreEqual(singleton, resolved.Mock);
+            Assert.AreEqual(singleton.Instances, resolved.Mock.Instances);
         }
         [TestMethod]
         [ExpectedException(typeof(ImplementsException))]

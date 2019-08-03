@@ -34,6 +34,17 @@ namespace ServiceLocatorFramework
             return new BindOptions<TInterface>(bind);
         }
         private object TryNewInstance(Type type) {
+            var ctor = type.GetConstructors().FirstOrDefault();
+            if (ctor != null) {
+                var types = ctor.GetParameters().Select(p => p.ParameterType);
+                if(!types.All(t => _binds.Any(b => b.Interface == t)))
+                    throw new ImplementsException();
+
+                var getMethod = typeof(ServiceLocator).GetMethod("Get");
+                var instances = types.Select(t => getMethod.MakeGenericMethod(t).Invoke(this, null));
+                return ctor.Invoke(instances.ToArray());
+            }
+            
             return Activator.CreateInstance(type);
         }
     }
