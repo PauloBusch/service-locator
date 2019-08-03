@@ -1,7 +1,4 @@
-﻿using ServiceLocatorFramework;
-using System;
-
-namespace ServiceLocatorFramework
+﻿namespace ServiceLocatorFramework
 {
     public class BindOptions<TInterface> : IBindOptions<TInterface>
     {
