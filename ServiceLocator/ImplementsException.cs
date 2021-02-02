@@ -4,6 +4,13 @@ namespace ServiceLocatorFramework
 {
     public class ImplementsException : Exception
     {
-        public override string Message => "Uma implementação não foi associada ao tipo solicitado";
+        private readonly string _typeName;
+
+        public ImplementsException(string typeName)
+        {
+            _typeName = typeName;
+        }
+
+        public override string Message => $"Uma implementação não foi associada ao tipo: {_typeName}";
     }
 }
