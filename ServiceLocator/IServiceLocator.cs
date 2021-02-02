@@ -6,6 +6,7 @@ namespace ServiceLocatorFramework
     {
         object Get(Type type);
         TInterface Get<TInterface>();
-        IBindOptions<TInterface> Set<TInterface>();
+        IBindOptions<TInterface> Set<TInterface>(); 
+        IScopeOptions Use<TClass>() where TClass : class;
     }
 }

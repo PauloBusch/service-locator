@@ -34,6 +34,7 @@ namespace UnitTests
             for (int i = 0; i < TRY_INSTANCES; i++)
                 Assert.AreEqual(i + 1, InstanceObjects[i].Instances);
         }
+
         [TestMethod]
         public void SingletonInstances()
         {
@@ -52,6 +53,7 @@ namespace UnitTests
             for (int i = 0; i < TRY_INSTANCES; i++)
                 Assert.AreEqual(SINGLETON_INSTANCE, InstanceObjects[i].Instances);
         }
+
         [TestMethod]
         public void ConstructorResolve() {
             IServiceLocator sl = new ServiceLocator();
@@ -72,6 +74,7 @@ namespace UnitTests
             Assert.AreEqual(singleton, resolved.Mock);
             Assert.AreEqual(singleton.Instances, resolved.Mock.Instances);
         }
+
         [TestMethod]
         [ExpectedException(typeof(ImplementsException))]
         public void ImplementsException() {

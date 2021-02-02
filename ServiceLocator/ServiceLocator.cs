@@ -39,5 +39,15 @@ namespace ServiceLocatorFramework
             _binds.Add(bind);
             return new BindOptions<TInterface>(bind);
         }
+
+        public IScopeOptions Use<TClass>() where TClass : class
+        {
+            var type = typeof(TClass);
+            var bind = new BindObject(this, _binds);
+            bind.Interface(type);
+            bind.Implements(type);
+            _binds.Add(bind);
+            return new ScopeOptions(bind);
+        }
     }
 }
