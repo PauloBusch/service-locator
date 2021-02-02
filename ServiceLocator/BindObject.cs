@@ -43,8 +43,7 @@ namespace ServiceLocatorFramework
                 if (!types.All(t => _binds.Any(b => b.InterfaceAreEqual(t))))
                     throw new ImplementsException(_implements.Name);
 
-                var getMethod = typeof(ServiceLocator).GetMethod("Get", new Type[0]);
-                var instances = types.Select(t => getMethod.MakeGenericMethod(t).Invoke(_service_locator, null));
+                var instances = types.Select(t => _service_locator.Get(t));
                 return ctor.Invoke(instances.ToArray());
             }
 

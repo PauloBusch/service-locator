@@ -20,8 +20,13 @@ namespace ServiceLocatorFramework
         public object Get(Type type)
         {
             var bind = _binds.FirstOrDefault(b => b.InterfaceAreEqual(type));
-            if (bind == null) throw new ImplementsException(type.Name);
-
+            if (bind == null)
+            {
+                if (!type.IsClass) throw new ImplementsException(type.Name);
+                bind = new BindObject(this, _binds);
+                bind.Interface(type);
+                bind.Implements(type);
+            }
             return bind.GetInstance();
         }
 
