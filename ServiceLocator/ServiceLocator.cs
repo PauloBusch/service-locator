@@ -32,8 +32,10 @@ namespace ServiceLocatorFramework
 
         public IBindOptions<TInterface> Set<TInterface>()
         {
+            var type = typeof(TInterface);
             var bind = new BindObject(this, _binds);
-            bind.Interface(typeof(TInterface));
+            bind.Interface(type);
+            if (type.IsClass) bind.Implements(type);
             _binds.Add(bind);
             return new BindOptions<TInterface>(bind);
         }
